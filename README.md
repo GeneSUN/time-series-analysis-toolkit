@@ -2,7 +2,7 @@
 
 This Python module provides an extendable framework for inspecting key properties of time series data, including:
 
-Stationarity  
+**Stationarity**  
 - 📈 Trend  
 - 🔁 Seasonality  
 - 📉 Heteroscedasticity  
