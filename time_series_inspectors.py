@@ -1,5 +1,3 @@
-# time_series_inspectors.py
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -10,7 +8,7 @@ from statsmodels.tsa.stattools import adfuller, kpss
 from statsmodels.tsa.ar_model import AutoReg
 from statsmodels.stats.diagnostic import het_arch
 
-
+# Base class
 class BaseTimeSeriesInspector:
     def __init__(self, df, datetime_col, value_col):
         self.df = df.copy()
@@ -21,6 +19,8 @@ class BaseTimeSeriesInspector:
         self.series = self.df[self.value_col]
 
     def plot_series(self, title="Original Series"):
+        print("\n--- 🔍 Step: Visual Inspection ---")
+        print("Purpose: Observe overall shape, amplitude, and possible patterns.\n")
         plt.figure(figsize=(14, 4))
         plt.plot(self.series, label=self.value_col)
         plt.title(title)
@@ -32,6 +32,8 @@ class BaseTimeSeriesInspector:
         plt.show()
 
     def rolling_mean_std(self, window=24):
+        print(f"\n--- 📉 Step: Rolling Mean and Standard Deviation (window={window}) ---")
+        print("Purpose: Detect shifting average or variability over time.\n")
         rolling_mean = self.series.rolling(window=window).mean()
         rolling_std = self.series.rolling(window=window).std()
 
@@ -48,12 +50,15 @@ class BaseTimeSeriesInspector:
         plt.show()
 
 
+# Trend inspector
 class TrendInspector(BaseTimeSeriesInspector):
     def __init__(self, df, datetime_col, value_col, period=24):
         super().__init__(df, datetime_col, value_col)
         self.period = period
 
     def decompose_stl(self):
+        print("\n--- 🧩 Step: STL Decomposition ---")
+        print("Purpose: Separate series into trend, seasonal, and residual components.\n")
         stl = STL(self.series, period=self.period)
         result = stl.fit()
         result.plot()
@@ -62,16 +67,19 @@ class TrendInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def plot_acf(self, lags=100):
+        print(f"\n--- 🔁 Step: Autocorrelation Function (ACF, lags={lags}) ---")
+        print("Purpose: Slow decay in ACF suggests trend.\n")
         plot_acf(self.series.dropna(), lags=lags)
         plt.title("Autocorrelation (ACF)")
         plt.tight_layout()
         plt.show()
 
     def adf_test(self):
+        print("\n--- 🧪 Step: Augmented Dickey-Fuller (ADF) Test ---")
+        print("Purpose: Test for stationarity. Null hypothesis: series is non-stationary (has a trend).\n")
         result = adfuller(self.series.dropna())
         stat, pval, used_lag, nobs, crit_vals, _ = result
 
-        print("=== Augmented Dickey-Fuller (ADF) Test ===")
         print(f"ADF Statistic     : {stat:.4f}")
         print(f"p-value           : {pval:.4f}")
         print(f"Used Lag          : {used_lag}")
@@ -81,26 +89,34 @@ class TrendInspector(BaseTimeSeriesInspector):
             print(f"   {key}: {value:.4f}")
 
         if pval < 0.05:
-            print("\n\u2705 Interpretation: The null hypothesis is rejected.")
-            print("\u2192 The time series is likely stationary (no significant trend).")
+            print("\n✅ Interpretation: The null hypothesis is rejected.")
+            print("→ The series is likely stationary (no significant trend).")
         else:
-            print("\n\u274C Interpretation: The null hypothesis cannot be rejected.")
-            print("\u2192 The time series is likely non-stationary (trend is present).")
+            print("\n❌ Interpretation: The null hypothesis cannot be rejected.")
+            print("→ The series is likely non-stationary (trend is present).")
 
     def run_all(self):
+        print("\n" + "="*80)
+        print("📊 TREND INSPECTION".center(80))
+        print("="*80)
         self.plot_series("Trend Detection: Original Series")
         self.rolling_mean_std()
+        print("\n--- 🧩 Step: STL Decomposition ---")
+        print("Purpose: Separate series into trend, seasonal, and residual components.\n")
         self.decompose_stl()
         self.plot_acf()
         self.adf_test()
 
 
+# Seasonality inspector
 class SeasonalityInspector(BaseTimeSeriesInspector):
     def __init__(self, df, datetime_col, value_col, period=24):
         super().__init__(df, datetime_col, value_col)
         self.period = period
 
     def plot_seasonal_box(self, by="hour"):
+        print(f"\n--- 📦 Step: Seasonal Box Plot by {by.capitalize()} ---")
+        print(f"Purpose: Reveal repeated patterns in data by grouping by {by}.\n")
         df_temp = self.df.copy()
         df_temp["hour"] = df_temp.index.hour
         df_temp["weekday"] = df_temp.index.weekday
@@ -116,6 +132,8 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def decompose_stl(self):
+        print("\n--- 🧩 Step: STL Decomposition ---")
+        print("Purpose: Extract seasonal component from the time series.\n")
         stl = STL(self.series, period=self.period)
         result = stl.fit()
         result.plot()
@@ -124,19 +142,20 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def plot_acf(self, lags=100):
+        print(f"\n--- 🔁 Step: Autocorrelation Function (ACF, lags={lags}) ---")
+        print("Purpose: Repeating spikes suggest presence of seasonality.\n")
         plot_acf(self.series.dropna(), lags=lags)
         plt.title("Autocorrelation Function (ACF)")
         plt.tight_layout()
         plt.show()
 
     def kpss_test(self, regression='c', nlags='auto'):
-        print("=== KPSS Test ===")
-        print(f"Settings: regression='{regression}', nlags='{nlags}'")
-
+        print("\n--- 🧪 Step: KPSS Test ---")
+        print("Purpose: Test for stationarity. Null hypothesis: series is stationary.\n")
         try:
             stat, pval, lags, crit = kpss(self.series.dropna(), regression=regression, nlags=nlags)
 
-            print(f"\nKPSS Statistic   : {stat:.4f}")
+            print(f"KPSS Statistic   : {stat:.4f}")
             print(f"p-value          : {pval:.4f}")
             print(f"Lags Used        : {lags}")
             print("Critical Values  :")
@@ -144,16 +163,19 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
                 print(f"   {key}: {val}")
 
             if pval < 0.05:
-                print("\n\u274C Interpretation: The null hypothesis (stationarity) is rejected.")
-                print("\u2192 The series is likely **non-stationary**, possibly due to trend or seasonality.")
+                print("\n❌ Interpretation: The null hypothesis (stationarity) is rejected.")
+                print("→ The series is likely non-stationary (seasonality may exist).")
             else:
-                print("\n\u2705 Interpretation: The null hypothesis is not rejected.")
-                print("\u2192 The series is likely **stationary** under the tested conditions.")
+                print("\n✅ Interpretation: The null hypothesis is not rejected.")
+                print("→ The series is likely stationary.")
 
         except Exception as e:
             print("Error during KPSS test:", e)
 
     def run_all(self):
+        print("\n" + "="*80)
+        print("🔁 SEASONALITY INSPECTION".center(80))
+        print("="*80)
         self.plot_series("Seasonality Detection: Original Series")
         self.plot_seasonal_box(by="hour")
         self.decompose_stl()
@@ -161,12 +183,15 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         self.kpss_test()
 
 
+# Heteroscedasticity inspector
 class HeteroscedasticityInspector(BaseTimeSeriesInspector):
     def __init__(self, df, datetime_col, value_col, lags=12):
         super().__init__(df, datetime_col, value_col)
         self.lags = lags
 
     def plot_residuals(self):
+        print("\n--- 🔍 Step: Residual Plot ---")
+        print("Purpose: Check if residual variance changes over time.\n")
         model = AutoReg(self.series.dropna(), lags=1).fit()
         residuals = model.resid
 
@@ -181,7 +206,8 @@ class HeteroscedasticityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def arch_test(self):
-        print("=== ARCH Test for Heteroscedasticity ===")
+        print("\n--- 🧪 Step: ARCH Test ---")
+        print(f"Purpose: Detect time-varying volatility using {self.lags} lags.\n")
         residuals = AutoReg(self.series.dropna(), lags=1).fit().resid
         test_stat, pval, _, _ = het_arch(residuals, nlags=self.lags)
 
@@ -189,13 +215,15 @@ class HeteroscedasticityInspector(BaseTimeSeriesInspector):
         print(f"p-value             : {pval:.4f}")
 
         if pval < 0.05:
-            print("\n\u274C Interpretation: Reject null hypothesis of homoscedasticity.")
-            print("\u2192 The variance is likely **not constant** over time (heteroscedastic).")
+            print("\n❌ Interpretation: Reject null hypothesis of homoscedasticity.")
+            print("→ The variance is likely **not constant** (heteroscedastic).")
         else:
-            print("\n\u2705 Interpretation: Fail to reject null hypothesis.")
-            print("\u2192 The variance is likely **constant** (homoscedastic).")
+            print("\n✅ Interpretation: Fail to reject null hypothesis.")
+            print("→ The variance is likely **constant** (homoscedastic).")
 
     def plot_transforms(self):
+        print("\n--- 🔁 Step: Variance-Stabilizing Transforms ---")
+        print("Purpose: Apply log/sqrt transforms to reduce changing variance effects.\n")
         fig, axes = plt.subplots(2, 1, figsize=(14, 6), sharex=True)
         axes[0].plot(np.log1p(self.series), label="Log Transform", color='blue')
         axes[1].plot(np.sqrt(self.series), label="Sqrt Transform", color='green')
@@ -213,6 +241,9 @@ class HeteroscedasticityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def run_all(self):
+        print("\n" + "="*80)
+        print("📈 HETEROSCEDASTICITY INSPECTION".center(80))
+        print("="*80)
         self.plot_series("Heteroscedasticity Detection: Original Series")
         self.rolling_mean_std()
         self.plot_residuals()
