@@ -2,9 +2,9 @@
 
 This Python module provides an extendable framework for inspecting key properties of time series data, including:
 
+Stationarity  
 - 📈 Trend  
 - 🔁 Seasonality  
-- ⛔ Stationarity  
 - 📉 Heteroscedasticity  
 
 It leverages libraries like `pandas`, `matplotlib`, `seaborn`, `statsmodels`, and `numpy` to provide visualizations and statistical tests to support time series diagnostics.
