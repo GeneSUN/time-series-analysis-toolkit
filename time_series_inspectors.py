@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 from statsmodels.tsa.seasonal import STL
 from statsmodels.graphics.tsaplots import plot_acf
-from statsmodels.tsa.stattools import adfuller, kpss
+from statsmodels.tsa.stattools import adfuller, kpss, acf
 from statsmodels.tsa.ar_model import AutoReg
 from statsmodels.stats.diagnostic import het_arch
 
@@ -66,22 +66,9 @@ class TrendInspector(BaseTimeSeriesInspector):
     """
     Detects trend in time series using decomposition, ACF, and statistical tests.
     """
-    def __init__(self, df, datetime_col, value_col, period=24):
+    def __init__(self, df, datetime_col, value_col):
         super().__init__(df, datetime_col, value_col)
-        self.period = period
 
-    def decompose_stl(self):
-        """
-        Decompose the series using STL to isolate the trend component.
-        """
-        print("\n--- 🧩 Step: STL Decomposition ---")
-        print("Purpose: Separate series into trend, seasonal, and residual components.\n")
-        stl = STL(self.series, period=self.period)
-        result = stl.fit()
-        result.plot()
-        plt.suptitle("STL Decomposition")
-        plt.tight_layout()
-        plt.show()
 
     def plot_acf(self, lags=100):
         """
@@ -127,31 +114,67 @@ class TrendInspector(BaseTimeSeriesInspector):
         print("="*80)
         self.plot_series("Trend Detection: Original Series")
         self.rolling_mean_std()
-        self.decompose_stl()
         self.plot_acf()
         self.adf_test()
-
 
 class SeasonalityInspector(BaseTimeSeriesInspector):
     """
     Detects seasonality through decomposition, box plots, ACF, and KPSS test.
     """
-    def __init__(self, df, datetime_col, value_col, period=24):
+    def __init__(self, df, datetime_col, value_col, group_by, seasonal_period=None):
+        """
+        :param df: Input DataFrame
+        :param datetime_col: Name of datetime column
+        :param value_col: Name of the value column
+        :param seasonal_period: Optional. If None, it will be auto-detected.
+        :param group_by: datetime attribute to group boxplot by (e.g., 'hour', 'weekday', 'month')
+        """
         super().__init__(df, datetime_col, value_col)
-        self.period = period
+        self.group_by = group_by
+        self.period = seasonal_period or self._infer_seasonal_period()
+        
+        print(f"[INFO] Detected seasonal period: {self.period}")
 
-    def plot_seasonal_box(self, by="hour"):
+    def _infer_seasonal_period(self, max_lag=168):
         """
-        Create box plot grouped by hour or weekday to reveal cyclic behavior.
+        Automatically detect seasonal period using ACF.
+        Looks for the first significant peak after lag 0.
         """
+        print("[INFO] Attempting to infer seasonal period using ACF...")
+        series_clean = self.series.dropna()
+        acf_vals = acf(series_clean, nlags=max_lag)
+
+        # ignore lag 0; find first peak above a threshold (e.g., 0.5)
+        threshold = 0.5
+        for lag in range(1, len(acf_vals)):
+            if acf_vals[lag] >= threshold:
+                print(f"[INFO] ACF peak detected at lag: {lag}")
+                return lag
+
+        print("[WARN] No strong seasonality detected; defaulting to 24.")
+        return 24
+
+
+    def plot_seasonal_box(self):
+        """
+        Create a box plot grouped by a datetime attribute defined during initialization.
+
+        Raises:
+            ValueError: If the datetime index is not valid or group_by is not a valid attribute.
+        """
+        by = self.group_by
         print(f"\n--- 📦 Step: Seasonal Box Plot by {by.capitalize()} ---")
         print(f"Purpose: Reveal repeated patterns in data by grouping by {by}.\n")
-        df_temp = self.df.copy()
-        df_temp["hour"] = df_temp.index.hour
-        df_temp["weekday"] = df_temp.index.weekday
 
-        if by not in df_temp.columns:
-            raise ValueError(f"'{by}' must be one of: 'hour', 'weekday'")
+        df_temp = self.df.copy()
+
+        if not pd.api.types.is_datetime64_any_dtype(df_temp.index):
+            raise ValueError("Datetime index is required for seasonal box plots.")
+
+        try:
+            df_temp[by] = getattr(df_temp.index, by)
+        except AttributeError:
+            raise ValueError(f"'{by}' is not a valid datetime attribute. Try 'hour', 'weekday', 'month', etc.")
 
         plt.figure(figsize=(12, 5))
         sns.boxplot(x=by, y=self.value_col, data=df_temp)
@@ -159,6 +182,7 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.grid(True)
         plt.tight_layout()
         plt.show()
+
 
     def decompose_stl(self):
         """
@@ -218,7 +242,7 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         print("🔁 SEASONALITY INSPECTION".center(80))
         print("="*80)
         self.plot_series("Seasonality Detection: Original Series")
-        self.plot_seasonal_box(by="hour")
+        self.plot_seasonal_box()
         self.decompose_stl()
         self.plot_acf()
         self.kpss_test()
