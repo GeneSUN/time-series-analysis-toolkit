@@ -8,9 +8,15 @@ from statsmodels.tsa.stattools import adfuller, kpss
 from statsmodels.tsa.ar_model import AutoReg
 from statsmodels.stats.diagnostic import het_arch
 
-# Base class
 class BaseTimeSeriesInspector:
+    """
+    Base class for time series analysis.
+    Provides shared methods such as plotting and rolling statistics.
+    """
     def __init__(self, df, datetime_col, value_col):
+        """
+        Initialize with a DataFrame and target column.
+        """
         self.df = df.copy()
         self.datetime_col = datetime_col
         self.value_col = value_col
@@ -19,6 +25,9 @@ class BaseTimeSeriesInspector:
         self.series = self.df[self.value_col]
 
     def plot_series(self, title="Original Series"):
+        """
+        Plot the raw time series for visual inspection.
+        """
         print("\n--- 🔍 Step: Visual Inspection ---")
         print("Purpose: Observe overall shape, amplitude, and possible patterns.\n")
         plt.figure(figsize=(14, 4))
@@ -32,6 +41,9 @@ class BaseTimeSeriesInspector:
         plt.show()
 
     def rolling_mean_std(self, window=24):
+        """
+        Plot rolling mean and standard deviation to assess local trends and variance shifts.
+        """
         print(f"\n--- 📉 Step: Rolling Mean and Standard Deviation (window={window}) ---")
         print("Purpose: Detect shifting average or variability over time.\n")
         rolling_mean = self.series.rolling(window=window).mean()
@@ -50,13 +62,18 @@ class BaseTimeSeriesInspector:
         plt.show()
 
 
-# Trend inspector
 class TrendInspector(BaseTimeSeriesInspector):
+    """
+    Detects trend in time series using decomposition, ACF, and statistical tests.
+    """
     def __init__(self, df, datetime_col, value_col, period=24):
         super().__init__(df, datetime_col, value_col)
         self.period = period
 
     def decompose_stl(self):
+        """
+        Decompose the series using STL to isolate the trend component.
+        """
         print("\n--- 🧩 Step: STL Decomposition ---")
         print("Purpose: Separate series into trend, seasonal, and residual components.\n")
         stl = STL(self.series, period=self.period)
@@ -67,6 +84,9 @@ class TrendInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def plot_acf(self, lags=100):
+        """
+        Plot the autocorrelation function to identify persistence in the signal.
+        """
         print(f"\n--- 🔁 Step: Autocorrelation Function (ACF, lags={lags}) ---")
         print("Purpose: Slow decay in ACF suggests trend.\n")
         plot_acf(self.series.dropna(), lags=lags)
@@ -75,6 +95,9 @@ class TrendInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def adf_test(self):
+        """
+        Perform Augmented Dickey-Fuller test for trend non-stationarity.
+        """
         print("\n--- 🧪 Step: Augmented Dickey-Fuller (ADF) Test ---")
         print("Purpose: Test for stationarity. Null hypothesis: series is non-stationary (has a trend).\n")
         result = adfuller(self.series.dropna())
@@ -96,25 +119,31 @@ class TrendInspector(BaseTimeSeriesInspector):
             print("→ The series is likely non-stationary (trend is present).")
 
     def run_all(self):
+        """
+        Run all trend detection methods in order.
+        """
         print("\n" + "="*80)
         print("📊 TREND INSPECTION".center(80))
         print("="*80)
         self.plot_series("Trend Detection: Original Series")
         self.rolling_mean_std()
-        print("\n--- 🧩 Step: STL Decomposition ---")
-        print("Purpose: Separate series into trend, seasonal, and residual components.\n")
         self.decompose_stl()
         self.plot_acf()
         self.adf_test()
 
 
-# Seasonality inspector
 class SeasonalityInspector(BaseTimeSeriesInspector):
+    """
+    Detects seasonality through decomposition, box plots, ACF, and KPSS test.
+    """
     def __init__(self, df, datetime_col, value_col, period=24):
         super().__init__(df, datetime_col, value_col)
         self.period = period
 
     def plot_seasonal_box(self, by="hour"):
+        """
+        Create box plot grouped by hour or weekday to reveal cyclic behavior.
+        """
         print(f"\n--- 📦 Step: Seasonal Box Plot by {by.capitalize()} ---")
         print(f"Purpose: Reveal repeated patterns in data by grouping by {by}.\n")
         df_temp = self.df.copy()
@@ -132,6 +161,9 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def decompose_stl(self):
+        """
+        Decompose the series using STL to isolate the seasonal component.
+        """
         print("\n--- 🧩 Step: STL Decomposition ---")
         print("Purpose: Extract seasonal component from the time series.\n")
         stl = STL(self.series, period=self.period)
@@ -142,6 +174,9 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def plot_acf(self, lags=100):
+        """
+        Plot ACF to identify periodic autocorrelation.
+        """
         print(f"\n--- 🔁 Step: Autocorrelation Function (ACF, lags={lags}) ---")
         print("Purpose: Repeating spikes suggest presence of seasonality.\n")
         plot_acf(self.series.dropna(), lags=lags)
@@ -150,6 +185,9 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def kpss_test(self, regression='c', nlags='auto'):
+        """
+        Perform KPSS test for stationarity.
+        """
         print("\n--- 🧪 Step: KPSS Test ---")
         print("Purpose: Test for stationarity. Null hypothesis: series is stationary.\n")
         try:
@@ -173,6 +211,9 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
             print("Error during KPSS test:", e)
 
     def run_all(self):
+        """
+        Run all seasonality detection methods in order.
+        """
         print("\n" + "="*80)
         print("🔁 SEASONALITY INSPECTION".center(80))
         print("="*80)
@@ -183,13 +224,18 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         self.kpss_test()
 
 
-# Heteroscedasticity inspector
 class HeteroscedasticityInspector(BaseTimeSeriesInspector):
+    """
+    Detects heteroscedasticity (changing variance) in time series.
+    """
     def __init__(self, df, datetime_col, value_col, lags=12):
         super().__init__(df, datetime_col, value_col)
         self.lags = lags
 
     def plot_residuals(self):
+        """
+        Fit a simple AR model and plot residuals to inspect variance over time.
+        """
         print("\n--- 🔍 Step: Residual Plot ---")
         print("Purpose: Check if residual variance changes over time.\n")
         model = AutoReg(self.series.dropna(), lags=1).fit()
@@ -206,6 +252,9 @@ class HeteroscedasticityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def arch_test(self):
+        """
+        Perform ARCH test to statistically detect heteroscedasticity.
+        """
         print("\n--- 🧪 Step: ARCH Test ---")
         print(f"Purpose: Detect time-varying volatility using {self.lags} lags.\n")
         residuals = AutoReg(self.series.dropna(), lags=1).fit().resid
@@ -222,6 +271,9 @@ class HeteroscedasticityInspector(BaseTimeSeriesInspector):
             print("→ The variance is likely **constant** (homoscedastic).")
 
     def plot_transforms(self):
+        """
+        Plot log and square-root transforms to visually assess if variance stabilizes.
+        """
         print("\n--- 🔁 Step: Variance-Stabilizing Transforms ---")
         print("Purpose: Apply log/sqrt transforms to reduce changing variance effects.\n")
         fig, axes = plt.subplots(2, 1, figsize=(14, 6), sharex=True)
@@ -241,6 +293,9 @@ class HeteroscedasticityInspector(BaseTimeSeriesInspector):
         plt.show()
 
     def run_all(self):
+        """
+        Run all heteroscedasticity detection methods in order.
+        """
         print("\n" + "="*80)
         print("📈 HETEROSCEDASTICITY INSPECTION".center(80))
         print("="*80)
