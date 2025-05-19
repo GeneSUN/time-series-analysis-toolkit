@@ -66,9 +66,6 @@ class TrendInspector(BaseTimeSeriesInspector):
     """
     Detects trend in time series using decomposition, ACF, and statistical tests.
     """
-    def __init__(self, df, datetime_col, value_col):
-        super().__init__(df, datetime_col, value_col)
-
 
     def plot_acf(self, lags=100):
         """
