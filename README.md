@@ -1,4 +1,6 @@
 # 🕵️‍♂️ Time Series Inspectors
+https://medium.com/@injure21/how-to-detect-stationarity-in-time-series-trend-seasonality-and-variance-66c37d71b9a4
+
 
 This Python module provides an extendable framework for inspecting key properties of time series data, including:
 
