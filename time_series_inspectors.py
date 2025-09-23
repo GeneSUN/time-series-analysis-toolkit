@@ -243,6 +243,57 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         self.decompose_stl()
         self.visualize_acf()
         self.kpss_test()
+    
+    def seasonality_strength(self):
+        """
+        Quantify strength of seasonality using STL decomposition.
+        Report variance explained by Seasonal and Residual components.
+    
+        Strength (seasonality) = Var(Seasonal) / Var(Observed)
+        Strength (residual)    = Var(Residual) / Var(Observed)
+        """
+        print("\n--- 📊 Step: Seasonality Strength ---")
+        print("Purpose: Measure how much variance is explained by seasonal vs residual components.\n")
+    
+        stl = STL(self.series, period=self.period)
+        result = stl.fit()
+    
+        observed = self.series.values
+        seasonal = result.seasonal.values
+        resid = result.resid.values
+    
+        var_obs = np.var(observed, ddof=1)
+        var_seasonal = np.var(seasonal, ddof=1)
+        var_resid = np.var(resid, ddof=1)
+    
+        # ratios
+        strength_seasonal = var_seasonal / var_obs if var_obs > 0 else np.nan
+        strength_resid = var_resid / var_obs if var_obs > 0 else np.nan
+    
+        print(f"Variance(Observed) : {var_obs:.4f}")
+        print(f"Variance(Seasonal) : {var_seasonal:.4f}")
+        print(f"Variance(Residual) : {var_resid:.4f}")
+        print(f"Seasonality Strength (VarSeasonal / VarObserved): {strength_seasonal:.2%}")
+        print(f"Residual Strength   (VarResidual / VarObserved): {strength_resid:.2%}")
+    
+        # interpretation of seasonality
+        if strength_seasonal < 0.05:
+            print("→ Seasonality is negligible (<5%).")
+        elif strength_seasonal < 0.20:
+            print("→ Seasonality is weak but present (5–20%).")
+        else:
+            print("→ Seasonality is strong (>20%).")
+    
+        # interpretation of residuals and stationarity
+        if strength_resid > 0.8:
+            print("→ High residual variance (>80%): series behaves almost like white noise, strongly stationary.")
+        elif strength_resid > 0.5:
+            print("→ Moderate residual variance (50–80%): weak trend/seasonality, likely close to stationary.")
+        else:
+            print("→ Low residual variance (<50%): strong signal from trend/seasonality, less stationary.")
+    
+        return strength_seasonal, strength_resid
+
 
 
 class HeteroscedasticityInspector(BaseTimeSeriesInspector):
