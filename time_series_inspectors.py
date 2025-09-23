@@ -66,11 +66,8 @@ class TrendInspector(BaseTimeSeriesInspector):
     """
     Detects trend in time series using decomposition, ACF, and statistical tests.
     """
-    def __init__(self, df, datetime_col, value_col):
-        super().__init__(df, datetime_col, value_col)
 
-
-    def plot_acf(self, lags=100):
+    def visualize_acf(self, lags=100):
         """
         Plot the autocorrelation function to identify persistence in the signal.
         """
@@ -114,7 +111,7 @@ class TrendInspector(BaseTimeSeriesInspector):
         print("="*80)
         self.plot_series("Trend Detection: Original Series")
         self.rolling_mean_std()
-        self.plot_acf()
+        self.visualize_acf()
         self.adf_test()
 
 class SeasonalityInspector(BaseTimeSeriesInspector):
@@ -197,7 +194,7 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         plt.tight_layout()
         plt.show()
 
-    def plot_acf(self, lags=100):
+    def visualize_acf(self, lags=100):
         """
         Plot ACF to identify periodic autocorrelation.
         """
@@ -244,7 +241,7 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
         self.plot_series("Seasonality Detection: Original Series")
         self.plot_seasonal_box()
         self.decompose_stl()
-        self.plot_acf()
+        self.visualize_acf()
         self.kpss_test()
 
 

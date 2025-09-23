@@ -1,26 +1,63 @@
-# 📊 Time Series Diagnostics Toolkit
+# 🕵️‍♂️ Time Series Inspectors
 
-A modular Python toolkit to **diagnose trend, seasonality, and heteroscedasticity** in time series data using statistical tests and visual tools.
+This Python module provides an extendable framework for inspecting key properties of time series data, including:
+
+**Stationarity**  
+- 📈 Trend  
+- 🔁 Seasonality  
+- 📉 Heteroscedasticity  
+
+It leverages libraries like `pandas`, `matplotlib`, `seaborn`, `statsmodels`, and `numpy` to provide visualizations and statistical tests to support time series diagnostics.
+
+---
+## 📂 Module Overview
+
+The module contains the following classes:
+
+### `BaseTimeSeriesInspector`
+
+A foundational class that provides common methods for:
+
+- Initializing with a DataFrame  
+- Time parsing  
+- Rolling statistics  
+- General plotting utilities  
 
 ---
 
-## 📦 Features
+### `TrendSeasonalityInspector`
 
-✅ Trend Detection  
-✅ Seasonality Detection  
-✅ Heteroscedasticity Detection  
-✅ Rolling Statistics  
-✅ STL Decomposition  
-✅ ADF, KPSS, and ARCH Tests  
-✅ Boxplots, ACF, Residual Analysis  
-✅ Log/Sqrt Transforms  
-✅ All-in-one `.run_all()` method for quick diagnosis
+Inherits from `BaseTimeSeriesInspector` and provides:
+
+- STL decomposition  
+- Seasonality and trend plotting  
+- Seasonal autocorrelation visualization  
 
 ---
 
-## 🛠 Installation
+### `StationarityInspector`
+
+Inherits from `BaseTimeSeriesInspector` and provides:
+
+- Augmented Dickey-Fuller (ADF) test  
+- KPSS test  
+- Stationarity summary report  
+
+---
+
+### `HeteroscedasticityInspector`
+
+Inherits from `BaseTimeSeriesInspector` and provides:
+
+- ARCH test  
+- Visualization of residual variance  
+- Histogram and Q-Q plots for residuals  
+
+
+
+## 📦 Installation
+
+Make sure the following packages are installed:
 
 ```bash
-git clone https://github.com/yourusername/time-series-diagnostics.git
-cd time-series-diagnostics
-pip install -r requirements.txt
+pip install pandas numpy matplotlib seaborn statsmodels
