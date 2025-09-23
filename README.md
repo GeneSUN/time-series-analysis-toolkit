@@ -1,4 +1,4 @@
-# 🕵️‍♂️ Time Series Inspectors
+# 🕵️‍♂️ time-series-analysis-toolkit
 [A Beginner’s Guide to Time Series Analysis](https://medium.com/@injure21/a-beginners-guide-to-time-series-analysis-9f68a8078233)
 
 ## Analyzing and Visualizing Time Series Data
