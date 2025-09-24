@@ -287,3 +287,27 @@ def create_ewma_features(
         df = df.dropna().reset_index(drop=True)
 
     return df, list(feature_dict.keys())
+
+
+
+"""
+
+# 1. Create lag features
+df, lag_feats = create_lag_features(df_cap_hour_pd, lags=[1, 2, 3], target_col="feature1", group_col="sn")
+
+# 2. Create rolling features
+df, roll_feats = create_rolling_features(
+    df, windows=[12, 24], target_col="feature1", agg_funcs=["mean", "std"], group_col="sn"
+)
+
+# 3. Create seasonal rolling features (toy example with period=2)
+df, seasonal_feats = create_seasonal_rolling_features(
+    df, seasonal_periods=[24], windows=[1,2], target_col="feature1", agg_funcs=["mean"], group_col="sn"
+)
+
+# 4. Create EWMA features
+df, ewma_feats = create_ewma_features(df, target_col="feature1", spans=[12, 24], group_col="sn")
+
+df.dropna()
+
+"""
