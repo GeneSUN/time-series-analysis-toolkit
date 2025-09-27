@@ -167,12 +167,12 @@ class SeasonalityInspector(BaseTimeSeriesInspector):
 
         if not pd.api.types.is_datetime64_any_dtype(df_temp.index):
             raise ValueError("Datetime index is required for seasonal box plots.")
-
+        """
         try:
             df_temp[by] = getattr(df_temp.index, by)
         except AttributeError:
             raise ValueError(f"'{by}' is not a valid datetime attribute. Try 'hour', 'weekday', 'month', etc.")
-
+        """
         plt.figure(figsize=(12, 5))
         sns.boxplot(x=by, y=self.value_col, data=df_temp)
         plt.title(f"Seasonal Box Plot by {by.capitalize()}")
