@@ -9,15 +9,6 @@ from darts.metrics import mase as darts_mase
 # -----------------------
 # Core Metrics
 # -----------------------
-import numpy as np
-import pandas as pd
-from typing import Dict, Optional
-from darts import TimeSeries
-from darts.metrics import mase as darts_mase
-
-# -----------------------
-# Core Metrics
-# -----------------------
 
 def mae(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """Mean Absolute Error."""
