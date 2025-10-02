@@ -9,6 +9,8 @@ from typing import Dict, List, Union
 from sklearn.base import BaseEstimator, clone
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
+from src.metrics import calculate_metrics
+
 @dataclass
 class FeatureConfig:
     """FeatureConfig describe data, not how to transform it."""
@@ -179,9 +181,6 @@ class ModelConfig:
         self.model = clone(self.model)
         return self
 
-
-
-
 class ModelWorkflow:
     def __init__(
         self,
@@ -204,6 +203,11 @@ class ModelWorkflow:
         self._scaler = None
         self._cat_encoder = None
         self._encoded_categorical_features = None
+
+        # keep track of last datasets for evaluation
+        self._last_train_df = None
+        self._last_test_df = None
+        self._last_y_pred = None
 
         # initialize scaler if needed
         if self.model_config.apply_normalization:
@@ -273,13 +277,10 @@ class ModelWorkflow:
     # -------------------------------
     # Public API
     # -------------------------------
-
-    # ---------------------------
-    # Public API
-    # ---------------------------
     def fit(self, df: pd.DataFrame, categorical=True, exogenous=True):
         """Full workflow: extract features & target, preprocess, fit model."""
         X, y, _ = self.feature_config.get_X_y(df, categorical=categorical, exogenous=exogenous)
+        self._last_train_df = df.copy()
         return self.fit_Xy(X, y)
 
     def fit_Xy(self, X: pd.DataFrame, y: pd.Series):
@@ -300,9 +301,12 @@ class ModelWorkflow:
         return self
 
     def predict(self, df: pd.DataFrame, categorical=True, exogenous=True) -> np.ndarray:
-        """Predict from raw dataframe."""
+        """Predict from raw dataframe and store test set + predictions."""
         X, _, _ = self.feature_config.get_X_y(df, categorical=categorical, exogenous=exogenous)
-        return self.predict_X(X)
+        y_pred = self.predict_X(X)
+        self._last_test_df = df.copy()
+        self._last_y_pred = pd.Series(y_pred.ravel(), index=df.index)
+        return y_pred
 
     def predict_X(self, X: pd.DataFrame) -> np.ndarray:
         """Predict from pre-extracted features."""
@@ -324,3 +328,22 @@ class ModelWorkflow:
 
         return pd.DataFrame({"feature": features, "importance": values})
 
+    def evaluate(self, decimals: int = 3) -> Dict[str, float]:
+        """
+        Evaluate using the last train/test/predict calls.
+        Requires fit() and predict() to have been called first.
+        """
+        if self._last_train_df is None or self._last_test_df is None or self._last_y_pred is None:
+            raise ValueError("You must call fit() and predict() before evaluate().")
+
+        # Extract y_true and y_train
+        _, y_test, _ = self.feature_config.get_X_y(self._last_test_df)
+        _, y_train, _ = self.feature_config.get_X_y(self._last_train_df)
+
+        return calculate_metrics(
+            y=y_test,
+            y_pred=self._last_y_pred,
+            name=self.model_config.name,
+            y_train=y_train,
+            decimals=decimals,
+        )
