@@ -80,9 +80,10 @@ def create_rolling_features(
     windows: List[int],
     target_col: str,
     agg_funcs: List[str] = ["mean", "std"],
-    group_col: str = None,
+    group_col: Optional[str] = None,
     shift: int = 1,
     dropna: bool = False,
+    fill_strategy: Optional[str] = "min_periods",  # NEW
 ) -> Tuple[pd.DataFrame, List[str]]:
     """
     Create rolling statistical features for a given column.
@@ -95,11 +96,15 @@ def create_rolling_features(
         group_col (str, optional): Column to group by (for multiple time series). Defaults to None.
         shift (int, optional): Number of steps to shift before computing rolling statistics
                                (useful to avoid data leakage). Defaults to 1.
-        dropna (bool, optional): Whether to drop rows with NaN introduced by shifting/rolling. Defaults to False.
+        dropna (bool, optional): Whether to drop rows with NaN introduced by shifting/rolling.
+        fill_strategy (str, optional): How to handle NaNs at the beginning of windows.
+            - "min_periods" → use partial windows (min_periods=1)
+
 
     Returns:
         Tuple[pd.DataFrame, List[str]]: DataFrame with added rolling features and list of new feature names.
     """
+
     # --- Validation ---
     if not isinstance(windows, (list, tuple)):
         raise ValueError("`windows` must be a list or tuple of integers.")
@@ -110,38 +115,40 @@ def create_rolling_features(
         raise ValueError(f"Invalid agg_funcs: {invalid_funcs}. Must be from {ALLOWED_AGG_FUNCS}.")
 
     # --- Rolling computation ---
+    frames = []
+    min_periods = 1 if fill_strategy == "min_periods" else None
+
     if group_col is None:
-        warnings.warn(
-            "No `group_col` specified. Assuming a single time series in the DataFrame."
-        )
-        frames = []
+        warnings.warn("No `group_col` specified. Assuming a single time series in the DataFrame.")
         for w in windows:
             frame = (
                 df[target_col]
                 .shift(shift)
-                .rolling(w)
+                .rolling(w, min_periods=min_periods)
                 .agg({f"{target_col}_rolling_{w}_{func}": func for func in agg_funcs})
             )
             frames.append(frame)
-        rolling_df = pd.concat(frames, axis=1)
-
     else:
         if group_col not in df.columns:
             raise ValueError(f"`{group_col}` not found in DataFrame columns.")
-        frames = []
         for w in windows:
             frame = (
                 df.groupby(group_col)[target_col]
                 .shift(shift)
-                .rolling(w)
+                .rolling(w, min_periods=min_periods)
                 .agg({f"{target_col}_rolling_{w}_{func}": func for func in agg_funcs})
             )
             frames.append(frame)
-        rolling_df = pd.concat(frames, axis=1)
+
+    rolling_df = pd.concat(frames, axis=1)
 
     # --- Merge results ---
     df = df.assign(**rolling_df.to_dict("list"))
     new_features = rolling_df.columns.tolist()
+
+    # --- Handle NaNs ---
+    if fill_strategy == "min_periods":
+        df[new_features] = df[new_features].bfill(inplace=True)
 
     if dropna:
         df = df.dropna(subset=new_features).reset_index(drop=True)
