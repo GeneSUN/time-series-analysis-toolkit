@@ -83,7 +83,7 @@ def create_rolling_features(
     group_col: Optional[str] = None,
     shift: int = 1,
     dropna: bool = False,
-    fill_strategy: Optional[str] = "min_periods",  # NEW
+    fill_strategy: Optional[str] = "bfill",  # NEW
 ) -> Tuple[pd.DataFrame, List[str]]:
     """
     Create rolling statistical features for a given column.
@@ -147,11 +147,8 @@ def create_rolling_features(
     new_features = rolling_df.columns.tolist()
 
     # --- Handle NaNs ---
-    if fill_strategy == "min_periods":
+    if fill_strategy == "bfill":
         df[new_features] = df[new_features].bfill(inplace=True)
-
-    if dropna:
-        df = df.dropna(subset=new_features).reset_index(drop=True)
 
     return df, new_features
 
