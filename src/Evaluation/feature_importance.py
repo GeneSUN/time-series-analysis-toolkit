@@ -43,3 +43,11 @@ def plot_feature_importance(model, top_n=20, title="Top Features by Coefficient"
     plt.show()
 
     return coef_df
+
+if __name__ == "__main__":
+    # some example usage or test
+    pass
+    """
+    coef_df = plot_feature_importance(model, top_n=15)
+    print(coef_df)
+    """
