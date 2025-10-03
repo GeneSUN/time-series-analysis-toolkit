@@ -103,3 +103,17 @@ def plot_predictions_vs_actuals(
     )
 
     return fig
+
+
+if __name__ == "__main__":
+    # some example usage or test
+    pass
+    """
+    fig = plot_predictions_vs_actuals(
+                y_pred,
+                sample_test_df["energy_consumption"],
+                sample_test_df["timestamp"],
+                metrics=metrics_dict,
+                extra_title="Validation set: Household A",
+                date_range=("2014-01-01", "2014-01-08")
+                )   """
