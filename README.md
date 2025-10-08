@@ -17,10 +17,11 @@ https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/EDA/time_s
 [Fundamental of ARIMA](https://medium.com/@injure21/arima-for-anomaly-detection-85bfdef5d585)
 
 ## 4. Machine Learning for Time Series
+### 4.1. Modeling
 https://medium.com/@injure21/machine-learning-for-time-series-prediction-c0136bd321a9
 
-### Ensemble
-### Global Model
+### 4.2. Ensemble
+### 4.3. Global Model
 
 
 
