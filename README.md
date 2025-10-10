@@ -35,6 +35,7 @@ https://medium.com/@injure21/machine-learning-for-time-series-prediction-c0136bd
 
 
 ### 5.2. Validation Strategy
+- https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Evaluation/Validation_Strategies.ipynb
 
 ## 6. Time Series Clustering
 
