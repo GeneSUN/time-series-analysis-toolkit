@@ -1,4 +1,8 @@
 #@title metrics.py
+# !pip install  sktime
+# !pip install darts
+# !wget -q -O metrics.py https://raw.githubusercontent.com/GeneSUN/time-series-analysis-toolkit/main/src/Evaluation/metrics.py
+# from metrics import calculate_metrics
 
 import numpy as np
 import pandas as pd
@@ -94,16 +98,16 @@ def calculate_metrics(
     """
     # Convert to numpy
     y_true = y.to_numpy(dtype=float).ravel()
-    y_hat = y_pred.to_numpy(dtype=float).ravel()
+    y_pred = y_pred.to_numpy(dtype=float).ravel()
     y_train_arr = None if y_train is None else y_train.to_numpy(dtype=float).ravel()
 
     results = {
         "Algorithm": name,
-        "MAE": mae(y_true, y_hat),
-        "RMSE": rmse(y_true, y_hat),
-        "WAPE": wape(y_true, y_hat),
-        "MASE": mase(y_true, y_hat, y_train_arr),
-        "Forecast Bias(%)": forecast_bias(y_true, y_hat),
+        "MAE": mae(y_true, y_pred),
+        "RMSE": rmse(y_true, y_pred),
+        "WAPE": wape(y_true, y_pred),
+        "MASE": mase(y_true, y_pred, y_train_arr),
+        "Forecast Bias(%)": forecast_bias(y_true, y_pred),
     }
 
     # Round all float values
