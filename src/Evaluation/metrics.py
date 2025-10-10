@@ -112,4 +112,23 @@ def calculate_metrics(
             results[k] = np.round(v, decimals)
 
     return results
-
+    
+    from sklearn.metrics import mean_squared_error
+    from sktime.performance_metrics.forecasting import (
+        MeanAbsoluteScaledError,
+        MeanAbsolutePercentageError,
+    )
+    rmse_sklearn = np.sqrt(mean_squared_error(y_true, y_pred))
+    print(f"RMSE: {rmse_sklearn}")
+    
+    mape_sktime = MeanAbsolutePercentageError(symmetric=False)
+    mape = mape_sktime(y_true, y_pred)
+    print(f"MAPE: {mape}")
+    
+    smape_sktime = MeanAbsolutePercentageError(symmetric=True)
+    smape = smape_sktime(y_true, y_pred)
+    print(f"SMAPE: {smape}")
+    
+    mase_sktime = MeanAbsoluteScaledError()
+    mase = mase_sktime(y_true, y_pred, y_train=y_train)
+    print(f"MASE: {mase}")
