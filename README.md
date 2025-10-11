@@ -43,4 +43,4 @@ https://medium.com/@injure21/machine-learning-for-time-series-prediction-c0136bd
 
 https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
 
-
+## 8. Multivariant
