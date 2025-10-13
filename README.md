@@ -18,7 +18,8 @@ https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/EDA/time_s
 
 ## 4. Machine Learning for Time Series
 ### 4.1. Modeling
-https://medium.com/@injure21/machine-learning-for-time-series-prediction-c0136bd321a9
+[Machine Learning for Time Series: Building Workflows That Scale](https://medium.com/@injure21/machine-learning-for-time-series-prediction-c0136bd321a9)
+- https://colab.research.google.com/drive/1Zxx4BDxjp32SoKa8mzNOyXjUSMJLhiMg
 
 ### 4.2. Ensemble
 ### 4.3. Global Model
