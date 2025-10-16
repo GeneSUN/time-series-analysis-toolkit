@@ -39,7 +39,8 @@ https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/EDA/time_s
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Evaluation/Validation_Strategies.ipynb
 
 ## 6. Time Series Clustering
-https://medium.com/@injure21/time-series-clustering-from-dtw-to-deep-embeddings-ts2vec-autoencoders-f1c1517d9025
+[Time Series Clustering - From DTW to Deep Learning Embeddings (TS2Vec, Autoencoders)](https://medium.com/@injure21/time-series-clustering-from-dtw-to-deep-embeddings-ts2vec-autoencoders-f1c1517d9025)
+
 - https://colab.research.google.com/drive/1v805hpfMX8Z5xYkLTMQ3N3EINDks5OAJ
 
 ## 7. Deep Learning Model
