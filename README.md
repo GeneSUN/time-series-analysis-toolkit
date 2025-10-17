@@ -16,14 +16,10 @@ https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/EDA/time_s
 
 [Fundamental of ARIMA](https://medium.com/@injure21/arima-for-anomaly-detection-85bfdef5d585)
 
-## 4. Machine Learning for Time Series
-### 4.1. Modeling
+## 4. Machine Learning for Time Series Forecasting
+
 [Machine Learning for Time Series: Building Workflows That Scale](https://medium.com/@injure21/machine-learning-for-time-series-prediction-c0136bd321a9)
 - https://colab.research.google.com/drive/1Zxx4BDxjp32SoKa8mzNOyXjUSMJLhiMg
-
-### 4.2. Ensemble
-### 4.3. Global Model
-
 
 
 ## 5. Evaluation
@@ -38,13 +34,28 @@ https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/EDA/time_s
 ### 5.2. Validation Strategy
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Evaluation/Validation_Strategies.ipynb
 
+## 7. Deep Learning Model
+
+https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
+
+## 6. Time Series Classification
+
+[Time-Series Churn Classification](https://medium.com/@injure21/time-series-classification-churn-c33f85a038fd)
+
+
 ## 6. Time Series Clustering
 [Time Series Clustering - From DTW to Deep Learning Embeddings (TS2Vec, Autoencoders)](https://medium.com/@injure21/time-series-clustering-from-dtw-to-deep-embeddings-ts2vec-autoencoders-f1c1517d9025)
 
 - https://colab.research.google.com/drive/1v805hpfMX8Z5xYkLTMQ3N3EINDks5OAJ
 
-## 7. Deep Learning Model
 
-https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
+
 
 ## 8. Multivariant
+
+## Fusion
+### Ensemble
+
+## Granularization/Segmentation
+
+### 4.3. Global Model
