@@ -36,6 +36,10 @@
 
 https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
 
+### 6.1. Multivariant
+
+### 6.2. Global Model
+
 ## 7. Time Series Classification
 [Time‑Series Classification — a Practical Field Guide ](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
 - https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61
@@ -47,12 +51,7 @@ https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
 
 - https://colab.research.google.com/drive/1v805hpfMX8Z5xYkLTMQ3N3EINDks5OAJ
 
-
-## 9. Multivariant
-
-## 10. Fusion
+## 9. Fusion
 ### Ensemble
 
-## 11. Granularization/Segmentation
 
-### 11.1. Global Model
