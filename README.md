@@ -33,8 +33,9 @@
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Evaluation/Validation_Strategies.ipynb
 
 ## 6. Deep Learning for Time Series Forecasting
+[Building Deep Learning Forecasting Models with PyTorch Lightning & PyTorch Forecasting](https://medium.com/@injure21/building-deep-learning-forecasting-models-a59ada25564f)
 
-https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
+- https://colab.research.google.com/drive/12Hsf-5w2tDwZcsJSPBnH8GZSOFxcB7iG
 
 ### 6.1. Multivariant
 
