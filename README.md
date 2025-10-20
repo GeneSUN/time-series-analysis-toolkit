@@ -41,6 +41,10 @@
 
 ### 6.2. Global Model
 
+[From Local to Global: How One Model Can Forecast Thousands of Time Series
+](https://medium.com/@injure21/from-local-to-global-how-one-model-can-forecast-thousands-of-time-series-a2ac23498902)
+- https://colab.research.google.com/drive/17HKMecEdrzReMsiTd6ITEMR6izDeY3Nw
+
 ## 7. Time Series Classification
 [Time‑Series Classification — a Practical Field Guide ](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
 - https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61
