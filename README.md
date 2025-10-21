@@ -56,7 +56,8 @@
 
 - https://colab.research.google.com/drive/1v805hpfMX8Z5xYkLTMQ3N3EINDks5OAJ
 
-## 9. Fusion
-### Ensemble
+## 9. Fusion/Ensemble
+[Beyond Single-Source Learning: How Fusion Models Combine Time Series and Static Features](https://medium.com/@injure21/beyond-single-source-learning-how-fusion-models-combine-time-series-and-static-features-f1627b7c7e55)
 
-
+- https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa
+- https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/Ensemble/ensemble.py
