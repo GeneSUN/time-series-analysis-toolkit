@@ -48,7 +48,7 @@
 ## 7. Time Series Classification
 [Time‑Series Classification — a Practical Field Guide ](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
 - https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61
-[Time-Series Churn Classification](https://medium.com/@injure21/time-series-classification-churn-c33f85a038fd)
+- [Time-Series Churn Classification](https://medium.com/@injure21/time-series-classification-churn-c33f85a038fd)
 
 
 ## 8. Time Series Clustering
