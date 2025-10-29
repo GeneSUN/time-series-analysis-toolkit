@@ -26,7 +26,7 @@
 
 
 ## 2. Preprocess
-<img width="1400" height="551" alt="image" src="https://github.com/user-attachments/assets/c1a23c0f-068b-4355-bda9-4d44a07c9575" />
+<img width="700" height="351" alt="image" src="https://github.com/user-attachments/assets/c1a23c0f-068b-4355-bda9-4d44a07c9575" />
 
 [Transform Time Series Data for Supervised Learning: From Sequence to Samples](https://medium.com/@injure21/transform-time-series-data-for-supervised-learning-from-sequence-to-samples-a7b12306b077)<br>
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/FeatureEngineering/TimeSeries_FeatureEngineering.py <br>
