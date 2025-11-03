@@ -3,19 +3,19 @@
 
 ## Outline
 
-1. [Analyzing and Visualizing Time Series Data](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#1-analyzing-and-visualizing-time-series-data)
-2. [Preprocess](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#2-preprocess)
-3. [Baseline Model](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#3-baseline-model)
-4. [Machine Learning for Time Series Forecasting](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#4-machine-learning-for-time-series-forecasting)
-5. [Evaluation](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#5-evaluation)
-    - [Metrics](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#51-metrics)
-    - [Validation](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#52-validation-strategy)
-6. [Deep Learning for Time Series Forecasting](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#6-deep-learning-for-time-series-forecasting)
-    - [Multivariant](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#61-multivariant)
+1. [Analyzing and Visualizing Time Series Data](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#1-analyzing-and-visualizing-time-series-data)
+2. [Preprocess](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#2-preprocess)
+3. [Baseline Model](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#3-baseline-model)
+4. [Machine Learning for Time Series Forecasting](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#4-machine-learning-for-time-series-forecasting)
+5. [Evaluation](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#5-evaluation)
+    - [Metrics](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#51-metrics)
+    - [Validation](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#62-global-model)
+6. [Deep Learning for Time Series Forecasting](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#6-deep-learning-for-time-series-forecasting)
+    - [Multivariant](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#61-multivariant)
     - [Global Model](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#62-global-model)
-7. [Time Series Classification](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#7-time-series-classification)
-8. [Time Series Clustering](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#8-time-series-clustering)
-9. [Fusion/Ensemble](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/README.md#9-fusionensemble)
+7. [Time Series Classification](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#7-time-series-classification)
+8. [Time Series Clustering](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#8-time-series-clustering)
+9. [Fusion/Ensemble](https://github.com/GeneSUN/time-series-analysis-toolkit?tab=readme-ov-file#9-fusionensemble)
     
 
 ## 1. Analyzing and Visualizing Time Series Data
