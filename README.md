@@ -95,3 +95,31 @@
 
 - https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/Ensemble/ensemble.py
+
+
+---
+
+## 📂 Repository Structure
+
+```text
+time-series-analysis-toolkit/
+│
+├── src/
+│   ├── EDA/
+│   │   └── time_series_inspectors.py
+│   │
+│   ├── Evaluation/
+│   │   ├── feature_importance.py
+│   │   ├── metrics.py
+│   │   └── plot_predictions_vs_actuals.py
+│   │
+│   ├── FeatureEngineering/
+│   │   └── TimeSeries_FeatureEngineering.py
+│   │
+│   ├── Imputation/
+│   │   └── missing_values.py
+│   │
+│   └── Ensemble/
+│       └── ensemble.py
+│
+└── notebooks / examples / datasets (user added)
