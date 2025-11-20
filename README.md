@@ -1,7 +1,6 @@
 # 🕵️‍♂️ time-series-analysis-toolkit
-A companion repository for time-series learning, forecasting, evaluation, and visualization.  
-For an introduction, see:  
-[A Beginner’s Guide to Time Series Analysis](https://medium.com/@injure21/a-beginners-guide-to-time-series-analysis-9f68a8078233)
+Repository for time-series learning, forecasting, evaluation, and visualization.  
+For an introduction, see:  [A Beginner’s Guide to Time Series Analysis](https://medium.com/@injure21/a-beginners-guide-to-time-series-analysis-9f68a8078233)
 
 ## Outline
 
