@@ -18,7 +18,7 @@ For an introduction, see:
 7. [Time Series Classification](#7-time-series-classification)
 8. [Time Series Clustering](#8-time-series-clustering)
 9. [Fusion/Ensemble](#9-fusionensemble)
-
+10. [Libraries](#10-libraries)
 ---
 
 ## 1. Analyzing and Visualizing Time Series Data
@@ -106,6 +106,20 @@ Handles correlated temporal signals across multiple features.
 [Beyond Single-Source Learning: Fusion of Time Series & Static Features](https://medium.com/@injure21/beyond-single-source-learning-how-fusion-models-combine-time-series-and-static-features-f1627b7c7e55)
 - https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa  
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/Ensemble/ensemble.py
+
+## 10. Libraries
+
+
+| Library | Best For | Key Features |
+|---------|----------|--------------|
+| `statsmodels.tsa` | Classical Time Series | ARIMA, SARIMA, ETS, statistical tests |
+| `nixtla.statsforecast` | High-performance Classical Models | Lightning-fast ARIMA, AutoETS, optimized for scale |
+| `prophet` | Business Forecasting | Interpretable, trend/seasonality modeling |
+| `darts` | End-to-end Modeling | ARIMA → Deep Learning → Ensembling |
+| `sktime` | Time Series Classification & Transformation | Clustering, pipelines, sklearn-style API |
+| `pytorch-forecasting` | Deep Learning with PyTorch | TFT, DeepAR, seq2seq, attention-based forecasting |
+
+
 
 ---
 
