@@ -102,7 +102,7 @@ Handles correlated temporal signals across multiple features.
 ## 9. Fusion/Ensemble
 <img width="800" height="246" alt="image" src="https://github.com/user-attachments/assets/9d1e1d3b-f329-44c9-a867-ba281ea771ae" />
 
-[Beyond Single-Source Learning: Fusion of Time Series & Static Features](https://medium.com/@injure21/beyond-single-source-learning-how-fusion-models-combine-time-series-and-static-features-f1627b7c7e55)
+[Beyond Single-Source Learning: Fusion of Time Series & Static Features](https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Fusion%20Models.md)
 - https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa  
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/Ensemble/ensemble.py
 
