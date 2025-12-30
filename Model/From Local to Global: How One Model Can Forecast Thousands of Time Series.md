@@ -4,7 +4,7 @@
 
 This article focuses on **Global Forecasting Models (GFMs)**, meta-feature encoding, and embedding-based representations for scalable time series forecasting.
 
-A [Google Colab notebook](https://colab.research.google.com/drive/17HKMecEdrzReMsiTd6ITEMR6izDeY3Nw) is provided to **reproduce and practice** all concepts discussed here.
+A [Google Colab notebook](https://colab.research.google.com/drive/17HKMecEdrzReMsiTd6ITEMR6izDeY3Nw) and [medium article](https://medium.com/@injure21/from-local-to-global-how-one-model-can-forecast-thousands-of-time-series-a2ac23498902) provided to **reproduce and practice** all concepts discussed here.
 
 ---
 ## 📑 Table of Contents
