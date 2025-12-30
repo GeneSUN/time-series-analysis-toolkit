@@ -85,12 +85,10 @@ Handles correlated temporal signals across multiple features.
 ## 7. Time Series Classification
 <img width="1465" height="596" alt="image" src="https://github.com/user-attachments/assets/16cc03fa-b10c-4607-aa78-cdbaac558eea" />
 
-[Time-Series Classification: A Practical Guide](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
+[Time-Series Classification — A Practical Field Guide](https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Time-Series%20Classification.md); [medium-article](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
 - https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61
-- https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Time-Series%20Classification.md
-- [Time-Series Churn Classification](https://medium.com/@injure21/time-series-classification-churn-c33f85a038fd)
-- https://github.com/GeneSUN/5g-home-churn/tree/main
-  
+- [Time-Series Churn Classification Project](https://github.com/GeneSUN/5g-home-churn/tree/main)
+
 ---
 
 ## 8. Time Series Clustering
