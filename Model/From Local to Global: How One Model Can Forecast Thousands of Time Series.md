@@ -1,5 +1,5 @@
-# From Local to Global: How One Model Can Forecast Thousands of Time Series
-
+# From Local to Global
+### *(How One Model Can Forecast Thousands of Time Series)*
 ---
 
 This article focuses on **Global Forecasting Models (GFMs)**, meta-feature encoding, and embedding-based representations for scalable time series forecasting.
