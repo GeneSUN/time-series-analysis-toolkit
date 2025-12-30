@@ -89,7 +89,8 @@ Handles correlated temporal signals across multiple features.
 - https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Time-Series%20Classification.md
 - [Time-Series Churn Classification](https://medium.com/@injure21/time-series-classification-churn-c33f85a038fd)
-
+- https://github.com/GeneSUN/5g-home-churn/tree/main
+  
 ---
 
 ## 8. Time Series Clustering
