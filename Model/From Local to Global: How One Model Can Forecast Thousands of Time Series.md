@@ -7,6 +7,29 @@ This article focuses on **Global Forecasting Models (GFMs)**, meta-feature encod
 A [Google Colab notebook](https://colab.research.google.com/drive/17HKMecEdrzReMsiTd6ITEMR6izDeY3Nw) is provided to **reproduce and practice** all concepts discussed here.
 
 ---
+## 📑 Table of Contents
+
+- [Local vs Global](#-local-vs-global)
+  - [Local Models (Traditional Approach)](#local-models-traditional-approach)
+  - [Global Models (Modern Approach)](#-global-models-modern-approach)
+  - [Core Assumption](#-core-assumption)
+- [Advantages of Global Forecasting Models](#-advantages-of-global-forecasting-models)
+  - [Cross-Learning](#1️⃣-cross-learning)
+    - [1.1 Data Pooling — Learn What You Don’t Have](#11-data-pooling--learn-what-you-dont-have)
+    - [1.2 Regularization Through Sharing](#12-regularization-through-sharing)
+  - [Engineering Simplicity](#2️⃣-engineering-simplicity)
+- [Representation Learning for GFMs](#-representation-learning-for-gfms)
+  - [Why Meta-Features Matter](#why-meta-features-matter)
+- [Meta-Feature Conditioning](#-meta-feature-conditioning)
+  - [For Machine Learning Models](#for-machine-learning-models)
+- [Embedding-Based Representations (Deep Learning)](#-embedding-based-representations-deep-learning)
+  - [Why Embeddings?](#why-embeddings)
+  - [Example](#-example)
+- [Semi-Global Models (Hybrid Strategy)](#-semi-global-models-hybrid-strategy)
+- [Conclusion — Key Takeaways](#-conclusion--key-takeaways)
+
+
+---
 
 ## 🚀Local vs Global
 
