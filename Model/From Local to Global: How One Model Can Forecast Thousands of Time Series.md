@@ -243,13 +243,51 @@ Cluster similar time series, then train **one model per cluster**.
 
 
 
-## 🏁 Conclusion — Key Takeaways
-Global Forecasting Models (GFMs) shift forecasting from isolated local models to a unified framework that learns across all related time series.
+## Challenges
 
-- allows the model to share information across series, improving accuracy for data-scarce or newly launched entities.
-- Engineering simplicity: one global model replaces thousands of local models, reducing training, tuning, and monitoring complexity.
+### 1️⃣ Heterogeneity Across Time Series (The Core Challenge)
 
-Representation learning — through meta-features, embeddings, or clustering — helps the model recognize similarities and differences among series, balancing global generalization with local specialization.
+Global models assume that time series are related, but in practice they are often only partially related.
 
-- Embedding-based encodings enable efficient and meaningful representation of categorical features, improving model interpretability and scalability.
-- Semi-global strategies (like clustering) further enhance flexibility by combining the strengths of both global and local modeling.
+**Problems:**
+
+- Different series may have:
+  - Different seasonality (weekly vs yearly)
+  - Different scales and noise levels
+  - Different trend behaviors
+- A single global model can over-generalize, hurting performance on unique series
+
+**Typical Symptoms**
+- Strong performance on “average” series
+- Poor performance on rare or edge-case series
+
+
+### 2️⃣ Evaluation Is Harder Than Local Models
+
+Evaluating a single series is easy. Evaluating thousands is not.
+
+**Problems**
+
+- Aggregated metrics hide per-series failures
+- Good average performance ≠ good per-entity performance
+
+**Best Practices**
+
+- Per-series metrics (quantiles, error distributions)
+- Segment-based evaluation (by region, category)
+- Worst-case and tail performance analysis
+
+### 3️⃣ Interpretability & Debugging
+
+Global models—especially deep learning ones—can feel like black boxes.
+
+**Issues**
+
+- Hard to explain why a forecast is wrong for a specific series
+- Difficult to trace errors back to data or representation
+
+
+
+
+
+
