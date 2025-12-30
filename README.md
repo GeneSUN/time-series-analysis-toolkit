@@ -86,7 +86,8 @@ Handles correlated temporal signals across multiple features.
 <img width="1465" height="596" alt="image" src="https://github.com/user-attachments/assets/16cc03fa-b10c-4607-aa78-cdbaac558eea" />
 
 [Time-Series Classification: A Practical Guide](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
-- https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61  
+- https://colab.research.google.com/drive/1CGFJHqtr3R6KMDE4qNyd7sHLn0A4eg61
+- https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Time-Series%20Classification.md
 - [Time-Series Churn Classification](https://medium.com/@injure21/time-series-classification-churn-c33f85a038fd)
 
 ---
