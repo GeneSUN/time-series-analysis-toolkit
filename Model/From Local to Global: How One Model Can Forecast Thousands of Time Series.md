@@ -9,7 +9,7 @@ A [Google Colab notebook](https://colab.research.google.com/drive/17HKMecEdrzReM
 ---
 ## 📑 Table of Contents
 
-- [Local vs Global](#-local-vs-global)
+- [Local vs Global](#local-vs-global)
   - [Local Models (Traditional Approach)](#local-models-traditional-approach)
   - [Global Models (Modern Approach)](#-global-models-modern-approach)
   - [Core Assumption](#-core-assumption)
@@ -20,18 +20,22 @@ A [Google Colab notebook](https://colab.research.google.com/drive/17HKMecEdrzReM
   - [Engineering Simplicity](#2️⃣-engineering-simplicity)
 - [Representation Learning for GFMs](#-representation-learning-for-gfms)
   - [Why Meta-Features Matter](#why-meta-features-matter)
-- [Meta-Feature Conditioning](#-meta-feature-conditioning)
-  - [For Machine Learning Models](#for-machine-learning-models)
-- [Embedding-Based Representations (Deep Learning)](#-embedding-based-representations-deep-learning)
-  - [Why Embeddings?](#why-embeddings)
-  - [Example](#-example)
+  - [Meta-Feature Conditioning](#meta-feature-conditioning)
+    - [For Machine Learning Models](#for-machine-learning-models)
+  - [Embedding-Based Representations (Deep Learning)](#-embedding-based-representations-deep-learning)
+    - [Why Embeddings?](#why-embeddings)
+    - [Example](#-example)
 - [Semi-Global Models (Hybrid Strategy)](#-semi-global-models-hybrid-strategy)
-- [Conclusion — Key Takeaways](#-conclusion--key-takeaways)
+- [Challenges](#challenges)
+  - [Heterogeneity Across Time Series (The Core Challenge)](#1️⃣-heterogeneity-across-time-series-the-core-challenge)
+  - [Evaluation Is Harder Than Local Models](#2️⃣-evaluation-is-harder-than-local-models)
+  - [Interpretability & Debugging](#3️⃣-interpretability--debugging)
+
 
 
 ---
 
-## 🚀Local vs Global
+## Local vs Global
 
 Imagine building a temperature forecasting system for **thousands of weather stations worldwide**.
 
@@ -137,14 +141,14 @@ Introducing meta-features (like product category, region, or store ID) allows th
 
 ---
 
-## 🏷️ Meta-Feature Conditioning
+### Meta Feature Conditioning
 
 - Add categorical or numerical meta-features describing each series (e.g., region, product category, store ID).
 - The model uses these as identifiers or context signals, enabling it to learn both shared global patterns and series-specific nuances.
 - This makes the model flexible: it can generalize across groups while specializing within them.
 
 
-### For Machine Learning Models
+#### For Machine Learning Models
 
 ```
 pip install category-encoders
@@ -176,11 +180,11 @@ pip install category-encoders
 
 ---
 
-## 🧬 Embedding-Based Representations (Deep Learning)
+### 🧬 Embedding-Based Representations (Deep Learning)
 
 Embeddings provide **dense, low-dimensional representations** of categorical features.
 
-### Why Embeddings?
+#### Why Embeddings?
 
 - Compact and efficient
 - Learn semantic similarity automatically
@@ -192,7 +196,7 @@ Embeddings provide **dense, low-dimensional representations** of categorical fea
 
 ---
 
-### 🧪 Example: 
+#### 🧪 Example: 
 
 Deep learning–based time series models incorporate embeddings directly as part of the model parameters.
 
@@ -241,7 +245,7 @@ Cluster similar time series, then train **one model per cluster**.
 - https://medium.com/@injure21/time-series-clustering-from-dtw-to-deep-embeddings-ts2vec-autoencoders-f1c1517d9025
 - https://colab.research.google.com/drive/1v805hpfMX8Z5xYkLTMQ3N3EINDks5OAJ
 
-
+---
 
 ## Challenges
 
