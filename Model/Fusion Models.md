@@ -17,7 +17,7 @@ Traditional models struggle to combine these effectively — they either:
 This is where **fusion models** come in.
 
 A **Google Colab notebook** accompanies this article to demonstrate all fusion strategies in practice:  
-👉 https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa
+👉 https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa <br>
 👉 https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/Ensemble/ensemble.py
 
 ---
