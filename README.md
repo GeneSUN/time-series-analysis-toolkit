@@ -78,6 +78,7 @@ Handles correlated temporal signals across multiple features.
 <img width="800" height="392" alt="image" src="https://github.com/user-attachments/assets/c5b7caa1-7d5f-4c9c-afe1-0c11f69724bf" />
 
 [From Local to Global Forecasting](https://medium.com/@injure21/from-local-to-global-how-one-model-can-forecast-thousands-of-time-series-a2ac23498902)  
+- https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/From%20Local%20to%20Global%3A%20How%20One%20Model%20Can%20Forecast%20Thousands%20of%20Time%20Series.md
 - https://colab.research.google.com/drive/17HKMecEdrzReMsiTd6ITEMR6izDeY3Nw
 
 ---
