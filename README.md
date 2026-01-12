@@ -2,6 +2,9 @@
 Repository for time-series learning, forecasting, evaluation, and visualization.  
 For an introduction, see:  [A Beginner’s Guide to Time Series Analysis](https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/A%20Beginner%E2%80%99s%20Guide%20to%20Time%20Series%20Analysis.md)
 
+> “The past is never dead. It’s not even past.” — William Faulkner
+
+
 ## Outline
 
 1. [Analyzing and Visualizing Time Series Data](#1-analyzing-and-visualizing-time-series-data)
