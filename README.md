@@ -17,10 +17,11 @@ For an introduction, see:  [A Beginner’s Guide to Time Series Analysis](https:
 6. [Deep Learning for Time Series Forecasting](#6-deep-learning-for-time-series-forecasting)  
     - [Multivariant](#61-multivariant)  
     - [Global Model](#62-global-model)
-7. [Time Series Classification](#7-time-series-classification)
-8. [Time Series Clustering](#8-time-series-clustering)
-9. [Fusion/Ensemble](#9-fusionensemble)
-10. [Libraries](#10-libraries)
+7. [Probabilistic Time Series Forecasting](#7probabilistic-time-series-forecasting)
+8. [Time Series Classification](#7-time-series-classification)
+9. [Time Series Clustering](#8-time-series-clustering)
+10. [Fusion/Ensemble](#9-fusionensemble)
+11. [Libraries](#10-libraries)
 ---
 
 ## 1. Analyzing and Visualizing Time Series Data
@@ -84,8 +85,13 @@ Handles correlated temporal signals across multiple features.
 - https://colab.research.google.com/drive/17HKMecEdrzReMsiTd6ITEMR6izDeY3Nw
 
 ---
+## 7. Probabilistic Time Series Forecasting
 
-## 7. Time Series Classification
+
+
+---
+
+## 8. Time Series Classification
 <img width="1465" height="596" alt="image" src="https://github.com/user-attachments/assets/16cc03fa-b10c-4607-aa78-cdbaac558eea" />
 
 [Time-Series Classification — A Practical Field Guide](https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Time-Series%20Classification.md); [medium-article](https://medium.com/@injure21/time-series-classification-a-practical-field-guide-with-a-telco-churn-walkthrough-271fa59b9bd0)
@@ -94,7 +100,7 @@ Handles correlated temporal signals across multiple features.
 
 ---
 
-## 8. Time Series Clustering
+## 9. Time Series Clustering
 <img width="603" height="390" alt="image" src="https://github.com/user-attachments/assets/be3ebd1e-cef3-488a-8c53-4c048c0a2116" />
 
 [Time Series Clustering — DTW to Deep Embeddings (TS2Vec, Autoencoders)](https://medium.com/@injure21/time-series-clustering-from-dtw-to-deep-embeddings-ts2vec-autoencoders-f1c1517d9025)  
@@ -102,14 +108,14 @@ Handles correlated temporal signals across multiple features.
 
 ---
 
-## 9. Fusion/Ensemble
+## 10. Fusion/Ensemble
 <img width="800" height="246" alt="image" src="https://github.com/user-attachments/assets/9d1e1d3b-f329-44c9-a867-ba281ea771ae" />
 
 [Beyond Single-Source Learning: Fusion of Time Series & Static Features](https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Model/Fusion%20Models.md)
 - https://colab.research.google.com/drive/13OhKqtGc1RDjN8DdyGhyDSN7oY0upVpa  
 - https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/src/Ensemble/ensemble.py
 
-## 10. Libraries
+## 11. Libraries
 
 
 | Library | Best For | Key Features |
