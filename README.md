@@ -17,7 +17,7 @@ For an introduction, see:  [A Beginner’s Guide to Time Series Analysis](https:
 6. [Deep Learning for Time Series Forecasting](#6-deep-learning-for-time-series-forecasting)  
     - [Multivariant](#61-multivariant)  
     - [Global Model](#62-global-model)
-7. [Probabilistic Time Series Forecasting](#7probabilistic-time-series-forecasting)
+7. [Probabilistic Time Series Forecasting](#7-probabilistic-time-series-forecasting)
 8. [Time Series Classification](#7-time-series-classification)
 9. [Time Series Clustering](#8-time-series-clustering)
 10. [Fusion/Ensemble](#9-fusionensemble)
