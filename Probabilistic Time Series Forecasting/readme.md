@@ -1,5 +1,25 @@
 ## Why Probabilistic Time Series Forecasting Matters
 
+## Table of Contents
+
+
+- [1. Forecasting is inherently uncertain](#1-forecasting-is-inherently-uncertain)
+  - [1.1 No model contains every relevant variable](#11-no-model-contains-every-relevant-variable)
+  - [1.2 Time series forecasting has an additional limitation](#12-time-series-forecasting-has-an-additional-limitation)
+  - [1.3 Why this assumption is fragile](#13-why-this-assumption-is-fragile)
+- [2. If a single forecasted value is unreliable, can we do better?](#2-if-a-single-forecasted-value-is-unreliable-can-we-do-better)
+  - [2.1 One approach: ensembles](#21-one-approach-ensembles)
+  - [2.2 Another approach: move beyond point forecasts](#22-another-approach-move-beyond-point-forecasts)
+  - [2.3 Why probabilistic forecasting is useful](#23-why-probabilistic-forecasting-is-useful)
+- [3. Strengths and limitations of probabilistic forecasting compared with point forecasting](#3-strengths-and-limitations-of-probabilistic-forecasting-compared-with-point-forecasting)
+  - [3.1 Strengths](#31-strengths)
+  - [3.2 Limitations](#32-limitations)
+  - [3.3 The goal: useful uncertainty](#33-the-goal-useful-uncertainty)
+- [4. When to Use Point Forecasts vs. Interval and Probabilistic Forecasts](#4-when-to-use-point-forecasts-vs-interval-and-probabilistic-forecasts)
+  - [4.1 Use point forecasting when one number is enough](#41-use-point-forecasting-when-one-number-is-enough)
+  - [4.2 Use interval forecasting when you need a practical uncertainty band](#42-use-interval-forecasting-when-you-need-a-practical-uncertainty-band)
+  - [4.3 Use probabilistic forecasting when the decision is risk-based](#43-use-probabilistic-forecasting-when-the-decision-is-risk-based)
+
 ### 1. Forecasting is inherently uncertain
 
 Forecasting is never a fully certain task. This is true for almost any predictive model, but it is especially true in time series forecasting.
