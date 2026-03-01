@@ -1,3 +1,14 @@
+# Threshold-Risk Forecasting Methods for Time Series
+
+This document summarizes three major approaches for threshold-risk forecasting in time series:
+
+
+1. [Direct Exceedance Probability Forecasting (Regression-to-Classification)](#1direct-exceedance-probability-forecasting-regression-to-classification)
+2. [Prediction intervals using conformal prediction](#2prediction-intervals-using-conformal-prediction)
+3. [Probabilistic forecasting-Conditional Distribution Modeling](#3-probabilistic-forecasting-conditional-distribution-modeling)
+   
+These approaches differ in how much information about the future distribution they preserve and how well they quantify uncertainty.
+
 ## 1.Direct Exceedance Probability Forecasting (Regression-to-Classification)
 
 Exceedance probability forecasting can be implemented by transforming a continuous forecasting problem into a binary classification problem, where the model directly predicts the probability that a future value crosses a predefined threshold.
@@ -10,7 +21,7 @@ Step 2) Train a time-series classifier to output P(event=1 | past window)
 
 ```
 
-### fundamental limitations of direct exceedance probability forecasting via binary labels.
+### Fundamental limitations of direct exceedance probability forecasting via binary labels.
 
 Direct exceedance modeling simplifies the forecasting problem by converting a continuous target into a binary event, but this transformation **discards magnitude information.** As a result, small exceedances and extreme exceedances are treated identically during training, even though they correspond to very different levels of certainty and risk.
 
@@ -34,6 +45,7 @@ Direct exceedance modeling simplifies the forecasting problem by converting a co
 - Binary transformation keeps only: Did it exceed threshold?
 - but removes: How much did it exceed threshold? (severity of exceedance)
 
+---
 
 ## 2.Prediction intervals using conformal prediction
 Conformal prediction uses a regression model to produce point forecasts, and then uses empirical forecast errors (nonconformity scores) to construct prediction intervals with guaranteed coverage.
@@ -61,6 +73,8 @@ the interval comes from residual
 From residuals, ARIMA estimates:
 
 $$𝜎^2 =variance  of  residuals$$
+
+---
 
 ## 3. Probabilistic forecasting-Conditional Distribution Modeling
 
