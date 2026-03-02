@@ -70,9 +70,14 @@ the interval comes from residual
 | 1100   | 1050        | 50       |
 | 900    | 950         | -50      |
 
-From residuals, ARIMA estimates:
+From residuals, ARIMA estimates, $$𝜎^2 =variance  of  residuals$$
 
-$$𝜎^2 =variance  of  residuals$$
+- If you use variance of residual, $$s^2 = Σ(r_i - r̄)^2 / (n-1)$$
+  
+  - For ŷ=980  -> [930, 1030]
+  - For ŷ=1050 -> [1000, 1100]
+  - For ŷ=950  -> [900, 1000]
+  
 
 ---
 
