@@ -87,7 +87,15 @@ Handles correlated temporal signals across multiple features.
 ---
 ## 7. Probabilistic Time Series Forecasting
 
+- https://github.com/GeneSUN/time-series-analysis-toolkit/tree/main/Probabilistic%20Time%20Series%20Forecasting
+- https://github.com/GeneSUN/data-science-engineering/tree/main/Machine-Learning/model_strategy/Probabilistic%20Regression
 
+**Modeling** 
+- Direct Exceedance Probability Forecasting (Regression-to-Classification)
+- Prediction intervals using conformal prediction
+- Probabilistic forecasting-Conditional Distribution Modeling
+
+**[Metrics](https://github.com/GeneSUN/data-science-engineering/blob/main/Machine-Learning/model_strategy/Probabilistic%20Regression/Metrics.md)**
 
 ---
 
