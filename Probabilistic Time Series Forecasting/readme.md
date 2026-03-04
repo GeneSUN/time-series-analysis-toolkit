@@ -6,7 +6,8 @@ This document summarizes three major approaches for threshold-risk forecasting i
 1. [Direct Exceedance Probability Forecasting (Regression-to-Classification)](#1direct-exceedance-probability-forecasting-regression-to-classification)
 2. [Prediction intervals using conformal prediction](#2prediction-intervals-using-conformal-prediction)
 3. [Probabilistic forecasting-Conditional Distribution Modeling](#3-probabilistic-forecasting-conditional-distribution-modeling)
-4. [Metrics](https://github.com/GeneSUN/time-series-analysis-toolkit/edit/main/Probabilistic%20Time%20Series%20Forecasting/readme.md#4-metrics)
+4. [Metrics](https://github.com/GeneSUN/time-series-analysis-toolkit/blob/main/Probabilistic%20Time%20Series%20Forecasting/readme.md#4-metrics)
+
 These approaches differ in how much information about the future distribution they preserve and how well they quantify uncertainty.
 
 ## 1.Direct Exceedance Probability Forecasting (Regression-to-Classification)
