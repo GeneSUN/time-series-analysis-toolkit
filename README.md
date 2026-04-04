@@ -117,6 +117,8 @@ Large language models and time-series foundation models offer a new paradigm: ze
 | [TimesFM](https://github.com/google-research/timesfm) (Google) | Foundation | Yes |
 | GPT-4 / LLaMA | General LLM | Yes (prompt) |
 
+- https://github.com/GeneSUN/Generative-AI/blob/main/TimeSeries/Chronos.md
+
 ---
 
 ## 9. Time Series Classification
